@@ -1,0 +1,103 @@
+<!-- Odoo strips <style>; every rule inline. Description images must be absolute. -->
+<section style="color:#0F172A;font-size:16px;line-height:1.62;">
+ <div style="max-width:1000px;margin:0 auto;">
+
+  <div style="padding:8px 0 40px;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Connect Claude, ChatGPT or Copilot to Odoo, without handing over the keys.</h2>
+   <p style="font-size:18px;color:#334155;margin:0 0 15px;">An assistant that can answer "what did we invoice this customer last
+   quarter" is genuinely useful. An assistant with unrestricted read access to your
+   ERP is a problem nobody senior will sign off. This is built so it can be signed
+   off.</p>
+   <p style="color:#475569;margin:0 0 15px;"><strong>Nothing is exposed when you install it.</strong> No model is
+   readable until an administrator lists it. Writing is off unless you turn it on,
+   per model, and again per key. Named fields can be stripped so salaries and bank
+   details never leave. And every question the assistant asks is written to an
+   audit log with the key that asked it.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">You can see exactly what it asked, and what you refused</h2>
+   <div style="border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;margin:22px 0 8px;"><img class="img-fluid" style="max-width:100%;width:100%;height:auto;display:block;" src="https://cdn.jsdelivr.net/gh/pratzs/miko-mcp-server-odoo@mcp-assets-1.0.0/miko_mcp_server/static/description/screenshot_audit.png"
+     alt="The MCP audit log showing each question the assistant asked, rows returned, and refusals"/></div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">Real calls against a real database. Note the refusals: an attempt to read
+   a model that is not on the allowlist is recorded, not silently dropped.</p>
+   <p style="color:#475569;margin:0 0 15px;">This is the part that matters at audit time. "We connected an AI to the
+   ERP" is an unanswerable question without it.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">You decide what it can see</h2>
+   <div style="border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;margin:22px 0 8px;"><img class="img-fluid" style="max-width:100%;width:100%;height:auto;display:block;" src="https://cdn.jsdelivr.net/gh/pratzs/miko-mcp-server-odoo@mcp-assets-1.0.0/miko_mcp_server/static/description/screenshot_allowlist.png"
+     alt="The allowlist: one row per model, with read and write permissions, redacted fields and a row ceiling"/></div>
+   <div class="table-responsive" style="overflow-x:auto;margin-top:20px;">
+    <table class="table" style="width:100%;border-collapse:collapse;font-size:15px;">
+     <thead><tr style="background:#F8FAFC;"><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Control</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">What it does</th></tr></thead>
+     <tbody>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Allowlist</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">A model the assistant cannot see does not exist as far as it is concerned. Empty by default.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Read only</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Writing is off per model and per key. Both have to be on before anything changes.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Redacted fields</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Named fields are stripped from every response. Passwords, tokens and API keys are always stripped, whatever you configure.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Restrict to</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">An Odoo domain the assistant can never see past. One company, or this year only.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Row ceiling</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">A cap on how much one question can pull.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Acts as a user</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Every request runs as a real Odoo user, so record rules and access rights still apply. A key can never reach further than the person behind it.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">The allowlist can only ever narrow what that user could already reach.
+   It can never widen it.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">What the assistant can do</h2>
+   <div class="table-responsive" style="overflow-x:auto;margin-top:20px;">
+    <table class="table" style="width:100%;border-collapse:collapse;font-size:15px;">
+     <tbody>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><code>odoo_list_models</code></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Which models it is allowed to read, and what it may do with each.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><code>odoo_describe_model</code></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">The fields of an allowed model, so it can write a correct query instead of guessing.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><code>odoo_search</code></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Search and read, using standard Odoo domain syntax.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><code>odoo_count</code></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Count without pulling the records.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">Standard Model Context Protocol over JSON-RPC at <code>/mcp</code>, so any
+   MCP client works. Authenticate with <code>Authorization: Bearer &lt;key&gt;</code>.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Setting it up</h2>
+   <ul style="color:#475569;padding-left:20px;margin:0;">
+     <li style="margin-bottom:8px;">Install, then open <strong>MCP Server &gt; Allowed Models</strong> and add the models the assistant should see. Until you do, it can read nothing.</li>
+     <li style="margin-bottom:8px;">Create a key under <strong>Keys</strong>. It is shown once and stored hashed, so it cannot be read back out of a backup.</li>
+     <li style="margin-bottom:8px;">Point your MCP client at <code>https://your-odoo/mcp</code> with that key.</li>
+     <li style="margin-bottom:8px;">Watch <strong>Audit Log</strong> to see exactly what it does with the access.</li>
+   </ul>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Technical notes</h2>
+   <div class="table-responsive" style="overflow-x:auto;margin-top:20px;">
+    <table class="table" style="width:100%;border-collapse:collapse;font-size:15px;">
+     <tbody>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Odoo versions</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;"><strong>16.0, 17.0, 18.0 and 19.0</strong>, Community and Enterprise</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Hosting</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Odoo.sh and on premise. Odoo Online cannot run third party modules containing Python.</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Depends on</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;"><code>base</code> only</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Protocol</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Model Context Protocol 2024-11-05 over JSON-RPC 2.0</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Tests</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">21 automated tests on all four series, most of them proving access is refused</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">Keys are stored as a SHA-256 digest. The audit log is written on its own
+   transaction, so a refused or failed request still leaves a record.</p>
+  </div>
+
+  <div style="padding:40px 0 8px;border-top:1px solid #E2E8F0;">
+   <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;margin:0 0 7px;">A Miko app, built by Tripster Developers</h3>
+    <p style="color:#475569;margin:0 0 15px;">We are a software engineering firm in New Zealand and we build and support
+    Odoo for businesses that run their operations on it.</p>
+    <p style="color:#475569;margin:0;">A control you need before you could approve
+    this? <a href="mailto:support@tripsterdevelopers.com" style="color:#6B6499;font-weight:600;">support@tripsterdevelopers.com</a></p>
+   </div>
+  </div>
+
+ </div>
+</section>
