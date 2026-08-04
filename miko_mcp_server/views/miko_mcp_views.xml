@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mcp_key_list" model="ir.ui.view">
+        <field name="name">miko.mcp.key.tree</field>
+        <field name="model">miko.mcp.key</field>
+        <field name="arch" type="xml">
+            <tree string="Keys">
+                <field name="name"/>
+                <field name="key_preview"/>
+                <field name="user_id"/>
+                <field name="allow_write"/>
+                <field name="expires_on"/>
+                <field name="last_used"/>
+                <field name="call_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mcp_key_form" model="ir.ui.view">
+        <field name="name">miko.mcp.key.form</field>
+        <field name="model">miko.mcp.key</field>
+        <field name="arch" type="xml">
+            <form string="Key">
+                <header>
+                    <button name="action_generate_key" type="object" string="Generate Key"
+                            class="btn-primary"
+                            confirm="This replaces any existing key for this record. The new key is shown once and cannot be retrieved afterwards. Continue?"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g. Claude Desktop, finance team"/>
+                            <field name="user_id"/>
+                            <field name="key_preview"/>
+                        </group>
+                        <group>
+                            <field name="allow_write"/>
+                            <field name="expires_on"/>
+                            <field name="last_used"/>
+                            <field name="call_count"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <div class="text-muted">
+                        Every request made with this key runs as the user above, so
+                        Odoo's own access rights and record rules still apply. A key
+                        can never reach further than that person could.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mcp_model_list" model="ir.ui.view">
+        <field name="name">miko.mcp.model.tree</field>
+        <field name="model">miko.mcp.model</field>
+        <field name="arch" type="xml">
+            <tree string="Allowed models" editable="bottom">
+                <field name="model_id"/>
+                <field name="allow_read"/>
+                <field name="allow_write"/>
+                <field name="redacted_fields" placeholder="salary, bank_account"/>
+                <field name="domain_filter"/>
+                <field name="max_records"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mcp_log_list" model="ir.ui.view">
+        <field name="name">miko.mcp.log.tree</field>
+        <field name="model">miko.mcp.log</field>
+        <field name="arch" type="xml">
+            <tree string="Audit log" create="false" edit="false">
+                <field name="create_date" string="When"/>
+                <field name="key_id"/>
+                <field name="user_id"/>
+                <field name="tool"/>
+                <field name="model_name"/>
+                <field name="record_count"/>
+                <field name="duration_ms"/>
+                <field name="success" decoration-danger="not success"/>
+                <field name="error" optional="show"/>
+                <field name="arguments" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_mcp_key" model="ir.actions.act_window">
+        <field name="name">Keys</field>
+        <field name="res_model">miko.mcp.key</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a key for an assistant.</p>
+            <p>The key is shown once when you generate it. Nothing can be read until
+               you also allow at least one model.</p>
+        </field>
+    </record>
+    <record id="action_mcp_model" model="ir.actions.act_window">
+        <field name="name">Allowed Models</field>
+        <field name="res_model">miko.mcp.model</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing is exposed yet.</p>
+            <p>Until a model is listed here the assistant can read nothing at all.
+               That is the intended starting point.</p>
+        </field>
+    </record>
+    <record id="action_mcp_log" model="ir.actions.act_window">
+        <field name="name">Audit Log</field>
+        <field name="res_model">miko.mcp.log</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_mcp_root" name="MCP Server"
+              web_icon="miko_mcp_server,static/description/icon.png" sequence="99"
+              groups="group_mcp_admin,base.group_system"/>
+    <menuitem id="menu_mcp_models" name="Allowed Models" parent="menu_mcp_root"
+              action="action_mcp_model" sequence="10"/>
+    <menuitem id="menu_mcp_keys" name="Keys" parent="menu_mcp_root"
+              action="action_mcp_key" sequence="20"/>
+    <menuitem id="menu_mcp_log" name="Audit Log" parent="menu_mcp_root"
+              action="action_mcp_log" sequence="30"/>
+
+</odoo>
