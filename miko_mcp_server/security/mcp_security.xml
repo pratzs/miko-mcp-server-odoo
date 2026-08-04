@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_mcp_admin" model="res.groups">
+        <field name="name">Manage the MCP server</field>
+        <field name="comment">Can create keys, choose which models an AI assistant
+            may read, and see the audit log. Deliberately separate from general
+            administration: deciding what an assistant can see is a different
+            decision from being able to configure Odoo.</field>
+    </record>
+</odoo>
