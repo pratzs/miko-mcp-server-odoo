@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mcp_key_admin,miko.mcp.key admin,model_miko_mcp_key,group_mcp_admin,1,1,1,1
+access_mcp_model_admin,miko.mcp.model admin,model_miko_mcp_model,group_mcp_admin,1,1,1,1
+access_mcp_log_admin,miko.mcp.log admin,model_miko_mcp_log,group_mcp_admin,1,0,0,0
+access_mcp_key_system,miko.mcp.key system,model_miko_mcp_key,base.group_system,1,1,1,1
+access_mcp_model_system,miko.mcp.model system,model_miko_mcp_model,base.group_system,1,1,1,1
+access_mcp_log_system,miko.mcp.log system,model_miko_mcp_log,base.group_system,1,0,0,0
