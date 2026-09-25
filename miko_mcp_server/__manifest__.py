@@ -8,8 +8,8 @@ Connects Claude, ChatGPT, Copilot or any Model Context Protocol client to this
 Odoo database.
 
 Built to be approved rather than merely installed. Nothing is exposed until you
-say so: no model is readable by default, writing is off unless you turn it on per
-model, named fields can be redacted so salaries and bank details never leave, and
+say so: no model is readable by default, the assistant can read but never
+write, named fields can be redacted so salaries and bank details never leave, and
 every single question the assistant asks is written to an audit log with the key
 that asked it.
 """,
