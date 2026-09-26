@@ -14,7 +14,7 @@ every single question the assistant asks is written to an audit log with the key
 that asked it.
 """,
     'author': 'Tripster Developers',
-    'website': 'https://tripsterdevelopers.com/odoo/',
+    'website': 'https://miko.co.nz/odoo/mcp-server',
     'category': 'Productivity',
     'license': 'LGPL-3',
     'depends': ['base'],
